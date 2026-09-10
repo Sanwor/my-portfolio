@@ -15,7 +15,7 @@ class PortfolioNavbar extends GetView<NavigationController> {
     return Container(
       height: 80,
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-      color: Theme.of(context).colorScheme.surface.withOpacity(0.95),
+      color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.95),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

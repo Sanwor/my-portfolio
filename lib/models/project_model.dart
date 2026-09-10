@@ -4,6 +4,8 @@ class ProjectModel {
   final List<String> features;
   final List<String> technologies;
   final String? githubUrl;
+  final String? playstoreUrl;
+  final String? appstoreUrl;
   final String? demoUrl;
 
   const ProjectModel({
@@ -12,6 +14,8 @@ class ProjectModel {
     required this.features,
     required this.technologies,
     this.githubUrl,
+    this.playstoreUrl,
+    this.appstoreUrl,
     this.demoUrl,
   });
 }

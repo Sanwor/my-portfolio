@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
@@ -8,7 +7,6 @@ import 'app/theme/app_theme.dart';
 import 'app/bindings/portfolio_binding.dart';
 
 void main() {
-  usePathUrlStrategy();
   runApp(const PortfolioApp());
 }
 

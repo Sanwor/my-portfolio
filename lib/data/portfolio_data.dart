@@ -5,7 +5,7 @@ import '../models/skill_model.dart';
 class PortfolioData {
   // Personal Info
   static const String name = 'Sanwor Prasad Rajbhandari';
-  static const String role = 'Junior Flutter Developer';
+  static const String role = 'Flutter Developer';
   static const String location = 'Bhaktapur, Nepal';
   static const String email = 'sanwor.pd@gmail.com';
   static const String github = 'https://github.com/Sanwor';
@@ -20,11 +20,11 @@ class PortfolioData {
   // Experience
   static const List<ExperienceModel> experiences = [
     ExperienceModel(
-      position: 'Junior Flutter Developer',
+      position: 'Flutter Developer',
       company: 'Miracle Interface',
       duration: 'Apr 2026 – Present',
       responsibilities: [
-        'Engineered and deployed secure authentication flows and dynamic data screens for Shupuri (a consumer app live on Google Play), utilizing GetX state management and integrating robust REST APIs.',
+        'Developed and deployed secure authentication flows and dynamic data screens for Shupuri (a consumer app live on Google Play), utilizing GetX state management and integrating robust REST APIs.',
         'Refactored API-heavy screens to reduce load times, significantly improving rendering performance and overall responsiveness for end-users.',
         'Architected and implemented Firebase Cloud Messaging (FCM) end-to-end, enabling reliable push notifications for real-time application updates.',
         'Proactively diagnosed and resolved critical null-safety crashes and responsive UI overflow bugs ahead of production releases, drastically improving app stability metrics.',
@@ -54,13 +54,15 @@ class PortfolioData {
   // Projects
   static const List<ProjectModel> projects = [
     ProjectModel(
-      title: 'Store Locator & Management App (Japan)',
-      subtitle: 'Geographic-aware retail management application',
+      title: 'しゅぷり 守成クラブ',
+      subtitle: 'Geographic-aware retail management application(Japan)',
       features: [
         'Engineered a geographic-aware mobile application to map and manage retail store locations across Japan.',
         'Implemented location-based services to filter and display nearby stores, optimizing the user experience for seamless navigation and accessibility.',
       ],
       technologies: ['Flutter', 'Geolocation', 'REST APIs'],
+      playstoreUrl: 'https://play.google.com/store/apps/details?id=com.shuseiclub.shupuri',
+      appstoreUrl: 'https://apps.apple.com/jp/app/%E3%81%97%E3%82%85%E3%81%B7%E3%82%8A/id6761531854'
     ),
     ProjectModel(
       title: 'CampusConnect',

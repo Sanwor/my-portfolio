@@ -42,6 +42,12 @@ class ContactSection extends GetView<PortfolioController> {
                 url: controller.linkedin,
                 tooltip: 'LinkedIn',
               ),
+              const SizedBox(width: AppSpacing.md),
+              // SocialButton(
+              //   icon: ,
+              //   url: controller.linkedin,
+              //   tooltip: 'LinkedIn',
+              // ),
             ],
           ),
           const SizedBox(height: AppSpacing.xxl),
@@ -53,7 +59,7 @@ class ContactSection extends GetView<PortfolioController> {
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: Theme.of(
                 context,
-              ).textTheme.bodyMedium?.color?.withOpacity(0.5),
+              ).textTheme.bodyMedium?.color?.withValues(alpha: 0.5),
             ),
           ),
         ],

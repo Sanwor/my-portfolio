@@ -15,29 +15,45 @@ class ProjectsSection extends GetView<PortfolioController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(title: 'Projects'),
+          const SectionTitle(
+            title: 'Projects',
+          ),
+
+          const SizedBox(height: 24),
+
           LayoutBuilder(
             builder: (context, constraints) {
-              int crossAxisCount = 1;
-              if (constraints.maxWidth >= Breakpoints.tablet) {
-                crossAxisCount = 3;
-              } else if (constraints.maxWidth >= Breakpoints.mobile) {
-                crossAxisCount = 2;
+              final width = constraints.maxWidth;
+
+              int columns;
+
+              if (width >= Breakpoints.tablet) {
+                columns = 3;
+              } else if (width >= Breakpoints.mobile) {
+                columns = 2;
+              } else {
+                columns = 1;
               }
 
-              return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 24,
-                  mainAxisSpacing: 24,
-                  childAspectRatio: 0.75, // Adjust slightly to prevent overflow
-                ),
-                itemCount: controller.projects.length,
-                itemBuilder: (context, index) {
-                  return ProjectCard(project: controller.projects[index]);
-                },
+              const spacing = 24.0;
+
+              final cardWidth = columns == 1
+                  ? width
+                  : (width - (spacing * (columns - 1))) / columns;
+
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
+                children: controller.projects.map(
+                  (project) {
+                    return SizedBox(
+                      width: cardWidth,
+                      child: ProjectCard(
+                        project: project,
+                      ),
+                    );
+                  },
+                ).toList(),
               );
             },
           ),
