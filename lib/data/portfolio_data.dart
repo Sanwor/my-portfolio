@@ -11,11 +11,18 @@ class PortfolioData {
   static const String github = 'https://github.com/Sanwor';
   static const String linkedin = 'https://linkedin.com/in/sanwor'; 
 
-  static const String aboutMe = 
-      'I build clean, responsive, and reliable mobile applications with Flutter, '
-      'focusing on thoughtful user experiences and maintainable architecture. '
-      'With over 15 months of production experience, I specialize in REST API integration, '
-      'state management with GetX, and building geographic-aware applications.';
+  static const String aboutMe =
+    'I’m a Flutter developer focused on turning ideas into reliable, '
+    'responsive and thoughtfully crafted mobile experiences. My work '
+    'sits at the intersection of product thinking and practical '
+    'engineering—building interfaces that feel simple while the '
+    'underlying architecture remains maintainable.\n\n'
+    'With 15+ months of production experience, I’ve worked with '
+    'REST APIs, GetX, Firebase, geolocation and responsive UI, '
+    'including applications used in real-world environments. '
+    'I enjoy solving the details that make an application feel '
+    'fast, stable and intentional—from API-driven screens and '
+    'state management to performance and responsive behavior.';
 
   // Experience
   static const List<ExperienceModel> experiences = [
@@ -24,11 +31,10 @@ class PortfolioData {
       company: 'Miracle Interface',
       duration: 'Apr 2026 – Present',
       responsibilities: [
-        'Developed and deployed secure authentication flows and dynamic data screens for Shupuri (a consumer app live on Google Play), utilizing GetX state management and integrating robust REST APIs.',
-        'Refactored API-heavy screens to reduce load times, significantly improving rendering performance and overall responsiveness for end-users.',
-        'Architected and implemented Firebase Cloud Messaging (FCM) end-to-end, enabling reliable push notifications for real-time application updates.',
-        'Proactively diagnosed and resolved critical null-safety crashes and responsive UI overflow bugs ahead of production releases, drastically improving app stability metrics.',
-        'Partnered closely with UX/UI designers, backend engineers, and QA to define technical requirements, scope sprints, and consistently ship feature updates on schedule.',
+        'Develop production features for Shupuri using Flutter, GetX and REST APIs.',
+        'Improved API-heavy screens to reduce loading time and strengthen overall responsiveness.',
+        'Implemented Firebase Cloud Messaging end-to-end for reliable push notifications.',
+        'Resolved stability, null-safety and responsive UI issues ahead of production releases.',
       ],
     ),
     ExperienceModel(
@@ -36,17 +42,19 @@ class PortfolioData {
       company: 'Miracle Interface',
       duration: 'Sep 2025 – Mar 2026',
       responsibilities: [
-        'Assisted in the development and maintenance of Flutter applications.',
-        'Learned and applied GetX state management and REST API integrations.',
+        'Built and maintained Flutter application features within production development workflows.',
+        'Worked with GetX state management and REST APIs to build dynamic application screens.',
+        'Strengthened responsive UI, debugging and application development practices.',
       ],
     ),
     ExperienceModel(
       position: 'Flutter Intern',
       company: 'Miracle Interface',
-      duration: 'Apr 2025 – July 2025',
+      duration: 'Apr 2025 – Jul 2025',
       responsibilities: [
-        'Gained hands-on experience with Flutter and Dart fundamentals.',
-        'Built UI components and participated in agile development workflows.',
+        'Built reusable Flutter UI components while developing strong Dart and Flutter fundamentals.',
+        'Applied responsive design principles across application screens and layouts.',
+        'Participated in agile development, debugging and feature implementation workflows.',
       ],
     ),
   ];
@@ -62,7 +70,9 @@ class PortfolioData {
       ],
       technologies: ['Flutter', 'Geolocation', 'REST APIs'],
       playstoreUrl: 'https://play.google.com/store/apps/details?id=com.shuseiclub.shupuri',
-      appstoreUrl: 'https://apps.apple.com/jp/app/%E3%81%97%E3%82%85%E3%81%B7%E3%82%8A/id6761531854'
+      appstoreUrl: 'https://apps.apple.com/jp/app/%E3%81%97%E3%82%85%E3%81%B7%E3%82%8A/id6761531854',
+      imageAsset: 'assets/images/shupuri.png',  
+      isProfessional: true,
     ),
     ProjectModel(
       title: 'CampusConnect',
@@ -74,6 +84,7 @@ class PortfolioData {
       ],
       technologies: ['Flutter', 'RAG AI', 'Push Notifications'],
       githubUrl: 'https://github.com/Sanwor/Campus-Connect',
+      imageAsset: 'assets/images/campus_connect.png',
     ),
     ProjectModel(
       title: 'Lodge App',
@@ -84,6 +95,7 @@ class PortfolioData {
       ],
       technologies: ['Flutter', 'State Management'],
       githubUrl: 'https://github.com/Sanwor/lodge-app',
+      imageAsset: 'assets/images/lodge_app.png',
     ),
   ];
 

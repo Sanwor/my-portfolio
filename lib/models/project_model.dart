@@ -7,6 +7,8 @@ class ProjectModel {
   final String? playstoreUrl;
   final String? appstoreUrl;
   final String? demoUrl;
+  final String? imageAsset;
+  final bool isProfessional;
 
   const ProjectModel({
     required this.title,
@@ -17,5 +19,7 @@ class ProjectModel {
     this.playstoreUrl,
     this.appstoreUrl,
     this.demoUrl,
+    this.imageAsset,
+    this.isProfessional = false,
   });
 }
