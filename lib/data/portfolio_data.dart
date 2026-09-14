@@ -3,26 +3,42 @@ import '../models/project_model.dart';
 import '../models/skill_model.dart';
 
 class PortfolioData {
+  // Career start date: April 1, 2025
+  static final DateTime careerStartDate = DateTime(2025, 4, 1);
+
+  /// Calculates total experience in months from April 2025 to today
+  static int get totalExperienceMonths {
+    final now = DateTime.now();
+    final months = (now.year - careerStartDate.year) * 12 + (now.month - careerStartDate.month);
+    return months < 0 ? 0 : months;
+  }
+
+  /// Returns total experience string formatted with '+' (e.g., "16+ months", "1+ years")
+  static String get formattedExperience {
+    return '$totalExperienceMonths+ months';
+  }
+
   // Personal Info
   static const String name = 'Sanwor Prasad Rajbhandari';
   static const String role = 'Flutter Developer';
   static const String location = 'Bhaktapur, Nepal';
   static const String email = 'sanwor.pd@gmail.com';
   static const String github = 'https://github.com/Sanwor';
-  static const String linkedin = 'https://linkedin.com/in/sanwor'; 
+  static const String linkedin = 'https://linkedin.com/in/sanwor';
 
-  static const String aboutMe =
-    'I’m a Flutter developer focused on turning ideas into reliable, '
-    'responsive and thoughtfully crafted mobile experiences. My work '
-    'sits at the intersection of product thinking and practical '
-    'engineering—building interfaces that feel simple while the '
-    'underlying architecture remains maintainable.\n\n'
-    'With 15+ months of production experience, I’ve worked with '
-    'REST APIs, GetX, Firebase, geolocation and responsive UI, '
-    'including applications used in real-world environments. '
-    'I enjoy solving the details that make an application feel '
-    'fast, stable and intentional—from API-driven screens and '
-    'state management to performance and responsive behavior.';
+  /// Updated to getter to interpolate dynamic experience
+  static String get aboutMe =>
+      'I’m a Flutter developer focused on turning ideas into reliable, '
+      'responsive and thoughtfully crafted mobile experiences. My work '
+      'sits at the intersection of product thinking and practical '
+      'engineering—building interfaces that feel simple while the '
+      'underlying architecture remains maintainable.\n\n'
+      'With $formattedExperience of production experience, I’ve worked with '
+      'REST APIs, GetX, Firebase, geolocation and responsive UI, '
+      'including applications used in real-world environments. '
+      'I enjoy solving the details that make an application feel '
+      'fast, stable and intentional—from API-driven screens and '
+      'state management to performance and responsive behavior.';
 
   // Experience
   static const List<ExperienceModel> experiences = [
@@ -71,7 +87,7 @@ class PortfolioData {
       technologies: ['Flutter', 'Geolocation', 'REST APIs'],
       playstoreUrl: 'https://play.google.com/store/apps/details?id=com.shuseiclub.shupuri',
       appstoreUrl: 'https://apps.apple.com/jp/app/%E3%81%97%E3%82%85%E3%81%B7%E3%82%8A/id6761531854',
-      imageAsset: 'assets/images/shupuri.png',  
+      imageAsset: 'assets/images/shupuri.png',
       isProfessional: true,
     ),
     ProjectModel(

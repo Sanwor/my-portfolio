@@ -171,7 +171,7 @@ class HeroSection extends GetView<PortfolioController> {
                   if (!isCompact)
                     Positioned(
                       left: 0,
-                      bottom: -2,
+                      bottom: -20,
                       child: _buildScrollCue(context),
                     ),
                 ],

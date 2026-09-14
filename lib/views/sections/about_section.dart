@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_portfolio/data/portfolio_data.dart';
 import 'package:my_portfolio/utils/breakpoints.dart';
 
 import '../../controllers/portfolio_controller.dart';
@@ -478,7 +479,7 @@ class AboutSection extends GetView<PortfolioController> {
         children: [
           _buildStat(
             context,
-            value: '15+',
+            value: '${PortfolioData.totalExperienceMonths}+',
             label: 'MONTHS OF PRODUCTION EXPERIENCE',
           ),
           _buildStat(
@@ -494,7 +495,7 @@ class AboutSection extends GetView<PortfolioController> {
           _buildStat(
             context,
             value: 'NEPAL',
-            label: 'BASED IN BHaktapur',
+            label: 'BASED IN Bhaktapur',
             isLast: true,
           ),
         ],
@@ -730,7 +731,7 @@ class AboutSection extends GetView<PortfolioController> {
         children: [
           _buildMobileStat(
             context,
-            value: '15+',
+            value: '${PortfolioData.totalExperienceMonths}+',
             label: 'MONTHS PRODUCTION EXPERIENCE',
           ),
           _buildMobileStat(

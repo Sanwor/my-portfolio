@@ -512,7 +512,7 @@ class ContactSection extends GetView<PortfolioController> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Text(
-      '© 2026 Sanwor Prasad Rajbhandari',
+      '© ${DateTime.now().year} Sanwor Prasad Rajbhandari',
       style: GoogleFonts.inter(
         fontSize: 10,
         fontWeight: FontWeight.w600,
