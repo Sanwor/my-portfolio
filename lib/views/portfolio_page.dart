@@ -26,6 +26,7 @@ class PortfolioPage extends GetView<NavigationController> {
       ),
 
       body: SingleChildScrollView(
+        controller: controller.scrollController,
         child: Column(
           children: [
             _buildSection(

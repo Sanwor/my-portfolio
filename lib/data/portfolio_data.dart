@@ -47,7 +47,7 @@ class PortfolioData {
       company: 'Miracle Interface',
       duration: 'Apr 2026 – Present',
       responsibilities: [
-        'Develop production features for Shupuri using Flutter, GetX and REST APIs.',
+        'Developed production features for Shupuri using Flutter, GetX and REST APIs.',
         'Improved API-heavy screens to reduce loading time and strengthen overall responsiveness.',
         'Implemented Firebase Cloud Messaging end-to-end for reliable push notifications.',
         'Resolved stability, null-safety and responsive UI issues ahead of production releases.',

@@ -311,11 +311,6 @@ class ExperienceSection extends GetView<PortfolioController> {
           child: ExperienceCard(
             experience: experience,
             isCurrent: isCurrent,
-            fixedHeight: isMobile
-                ? null
-                : isTablet
-                    ? 320
-                    : 300,
           ),
         ),
       ],

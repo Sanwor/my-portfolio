@@ -19,7 +19,7 @@ class PortfolioApp extends StatelessWidget {
       title: 'Sanwor Rajbhandari | Flutter Developer',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light, // Managed by ThemeController later if needed
+      themeMode: ThemeMode.dark,
       initialRoute: AppRoutes.home,
       getPages: AppPages.pages,
       initialBinding: PortfolioBinding(),
