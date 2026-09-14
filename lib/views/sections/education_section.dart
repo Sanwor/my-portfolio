@@ -239,7 +239,7 @@ class EducationSection extends GetView<PortfolioController> {
         ),
         const SizedBox(width: 10),
         Text(
-          '03 / EDUCATION',
+          '05 / EDUCATION',
           style: GoogleFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w700,
