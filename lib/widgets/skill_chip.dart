@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../utils/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SkillChip extends StatelessWidget {
   final String label;
@@ -11,21 +11,41 @@ class SkillChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme =
+        Theme.of(context).colorScheme;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+      constraints: const BoxConstraints(
+        minHeight: 36,
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 13,
+        vertical: 8,
+      ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.05),
-        border: Border.all(
-          color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
+        color: colorScheme.primary.withValues(
+          alpha: 0.045,
         ),
-        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: colorScheme.onSurface.withValues(
+            alpha: 0.12,
+          ),
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.primary,
-            ),
+        softWrap: true,
+        style: GoogleFonts.inter(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          height: 1.2,
+          letterSpacing: 0.05,
+          color: colorScheme.onSurface.withValues(
+            alpha: 0.72,
+          ),
+        ),
       ),
     );
   }
