@@ -13,19 +13,17 @@ class FadeInUp extends StatefulWidget {
   FadeInUp({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 800),
+    this.duration = const Duration(milliseconds: 1000),
     this.delay = const Duration(milliseconds: 0),
     this.controller,
     this.manualTrigger = false,
     this.animate = true,
     this.from = 100,
   }) {
-    if (manualTrigger == true && controller == null) {
+    if (manualTrigger && controller == null) {
       throw FlutterError(
-        'If you want to use manualTrigger:true, \n\n'
-        'Then you must provide the controller property, '
-        'that is a callback like:\n\n'
-        '( controller: AnimationController) => yourController = controller \n\n',
+        'If you want to use manualTrigger:true, '
+        'you must provide the controller property.',
       );
     }
   }
@@ -37,15 +35,11 @@ class FadeInUp extends StatefulWidget {
 class FadeInUpState extends State<FadeInUp>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
-
   late Animation<double> animation;
   late Animation<double> opacity;
 
   bool disposed = false;
   bool hasAnimated = false;
-
-  /// Unique key for VisibilityDetector.
-  final Key visibilityKey = UniqueKey();
 
   @override
   void initState() {
@@ -62,7 +56,7 @@ class FadeInUpState extends State<FadeInUp>
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeOut,
+        curve: Curves.easeOutCubic,
       ),
     );
 
@@ -72,7 +66,11 @@ class FadeInUpState extends State<FadeInUp>
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: const Interval(0, 0.65),
+        curve: const Interval(
+          0.0,
+          0.75,
+          curve: Curves.easeOut,
+        ),
       ),
     );
 
@@ -80,23 +78,13 @@ class FadeInUpState extends State<FadeInUp>
       widget.controller!(controller);
     }
 
-    // Preserve manual trigger behavior.
-    if (widget.manualTrigger) {
-      return;
-    }
-
-    // If animations are disabled, show the widget normally.
     if (!widget.animate) {
       controller.value = 1;
     }
   }
 
   void _startAnimation() {
-    if (disposed || hasAnimated || widget.manualTrigger) {
-      return;
-    }
-
-    if (!widget.animate) {
+    if (disposed || hasAnimated || !widget.animate || widget.manualTrigger) {
       return;
     }
 
@@ -109,17 +97,6 @@ class FadeInUpState extends State<FadeInUp>
     });
   }
 
-  void _handleVisibilityChanged(VisibilityInfo info) {
-    if (hasAnimated || widget.manualTrigger || !widget.animate) {
-      return;
-    }
-
-    // Start when at least 10% of the widget is visible.
-    if (info.visibleFraction >= 0.10) {
-      _startAnimation();
-    }
-  }
-
   @override
   void dispose() {
     disposed = true;
@@ -130,16 +107,17 @@ class FadeInUpState extends State<FadeInUp>
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      key: visibilityKey,
-      onVisibilityChanged: _handleVisibilityChanged,
+      key: Key('fade-in-up-${widget.hashCode}'),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction >= 0.10) {
+          _startAnimation();
+        }
+      },
       child: AnimatedBuilder(
         animation: controller,
-        builder: (BuildContext context, Widget? child) {
+        builder: (context, child) {
           return Transform.translate(
-            offset: Offset(
-              0,
-              animation.value,
-            ),
+            offset: Offset(0, animation.value),
             child: Opacity(
               opacity: opacity.value,
               child: widget.child,
@@ -163,19 +141,17 @@ class FadeInRight extends StatefulWidget {
   FadeInRight({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 800),
+    this.duration = const Duration(milliseconds: 1000),
     this.delay = const Duration(milliseconds: 0),
     this.controller,
     this.manualTrigger = false,
     this.animate = true,
     this.from = 100,
   }) {
-    if (manualTrigger == true && controller == null) {
+    if (manualTrigger && controller == null) {
       throw FlutterError(
-        'If you want to use manualTrigger:true, \n\n'
-        'Then you must provide the controller property, '
-        'that is a callback like:\n\n'
-        '( controller: AnimationController) => yourController = controller \n\n',
+        'If you want to use manualTrigger:true, '
+        'you must provide the controller property.',
       );
     }
   }
@@ -187,14 +163,11 @@ class FadeInRight extends StatefulWidget {
 class FadeInRightState extends State<FadeInRight>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
-
   late Animation<double> animation;
   late Animation<double> opacity;
 
   bool disposed = false;
   bool hasAnimated = false;
-
-  final Key visibilityKey = UniqueKey();
 
   @override
   void initState() {
@@ -211,7 +184,7 @@ class FadeInRightState extends State<FadeInRight>
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeOut,
+        curve: Curves.easeOutCubic,
       ),
     );
 
@@ -221,7 +194,11 @@ class FadeInRightState extends State<FadeInRight>
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: const Interval(0, 0.65),
+        curve: const Interval(
+          0.0,
+          0.75,
+          curve: Curves.easeOut,
+        ),
       ),
     );
 
@@ -229,23 +206,13 @@ class FadeInRightState extends State<FadeInRight>
       widget.controller!(controller);
     }
 
-    // Preserve manual trigger behavior.
-    if (widget.manualTrigger) {
-      return;
-    }
-
-    // If animations are disabled, show normally.
     if (!widget.animate) {
       controller.value = 1;
     }
   }
 
   void _startAnimation() {
-    if (disposed || hasAnimated || widget.manualTrigger) {
-      return;
-    }
-
-    if (!widget.animate) {
+    if (disposed || hasAnimated || !widget.animate || widget.manualTrigger) {
       return;
     }
 
@@ -258,17 +225,6 @@ class FadeInRightState extends State<FadeInRight>
     });
   }
 
-  void _handleVisibilityChanged(VisibilityInfo info) {
-    if (hasAnimated || widget.manualTrigger || !widget.animate) {
-      return;
-    }
-
-    // Start when at least 10% of the widget is visible.
-    if (info.visibleFraction >= 0.10) {
-      _startAnimation();
-    }
-  }
-
   @override
   void dispose() {
     disposed = true;
@@ -279,16 +235,17 @@ class FadeInRightState extends State<FadeInRight>
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      key: visibilityKey,
-      onVisibilityChanged: _handleVisibilityChanged,
+      key: Key('fade-in-right-${widget.hashCode}'),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction >= 0.10) {
+          _startAnimation();
+        }
+      },
       child: AnimatedBuilder(
         animation: controller,
-        builder: (BuildContext context, Widget? child) {
+        builder: (context, child) {
           return Transform.translate(
-            offset: Offset(
-              animation.value,
-              0,
-            ),
+            offset: Offset(animation.value, 0),
             child: Opacity(
               opacity: opacity.value,
               child: widget.child,
@@ -309,16 +266,23 @@ class FadeInRightBig extends StatelessWidget {
   final bool animate;
   final double from;
 
-  const FadeInRightBig({
+  FadeInRightBig({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 1200),
+    this.duration = const Duration(milliseconds: 1400),
     this.delay = const Duration(milliseconds: 0),
     this.controller,
     this.manualTrigger = false,
     this.animate = true,
     this.from = 600,
-  });
+  }) {
+    if (manualTrigger && controller == null) {
+      throw FlutterError(
+        'If you want to use manualTrigger:true, '
+        'you must provide the controller property.',
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

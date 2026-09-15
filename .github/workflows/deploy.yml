@@ -29,11 +29,25 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web
-        run: flutter build web --release --base-href /my-portfolio/
-
       - name: Configure GitHub Pages
+        id: pages
         uses: actions/configure-pages@v5
+
+      - name: Build Flutter Web
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          if [ -z "$BASE_PATH" ]; then
+            BASE_HREF="/"
+          else
+            BASE_HREF="${BASE_PATH%/}/"
+          fi
+
+          echo "Building Flutter Web with base href: $BASE_HREF"
+
+          flutter build web \
+            --release \
+            --base-href "$BASE_HREF"
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v4
