@@ -111,7 +111,7 @@ class PortfolioData {
       ],
       technologies: ['Flutter', 'State Management'],
       githubUrl: 'https://github.com/Sanwor/lodge-app',
-      imageAsset: 'assets/images/lodge_app.png',
+      imageAsset: '',
     ),
   ];
 
