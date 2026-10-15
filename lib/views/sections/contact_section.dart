@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../app/theme/app_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/portfolio_controller.dart';
@@ -304,7 +304,7 @@ class ContactSection extends GetView<PortfolioController> {
 
         Text(
           'CONTACT',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.8,
@@ -332,7 +332,7 @@ class ContactSection extends GetView<PortfolioController> {
       children: [
         Text(
           "GET IN TOUCH",
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: titleSize,
             fontWeight: FontWeight.w800,
             height: 0.9,
@@ -349,7 +349,7 @@ class ContactSection extends GetView<PortfolioController> {
           ),
           child: Text(
             'Interested in working together or have a question?',
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 18,
               fontWeight: FontWeight.w500,
               height: 1.55,
@@ -378,7 +378,7 @@ class ContactSection extends GetView<PortfolioController> {
       children: [
         Text(
           "GET IN TOUCH",
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: titleSize,
             fontWeight: FontWeight.w800,
             height: 0.9,
@@ -391,7 +391,7 @@ class ContactSection extends GetView<PortfolioController> {
 
         Text(
           'Interested in working together or have a question?',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 15,
             fontWeight: FontWeight.w500,
             height: 1.6,
@@ -513,7 +513,7 @@ class ContactSection extends GetView<PortfolioController> {
 
     return Text(
       '© ${DateTime.now().year} Sanwor Prasad Rajbhandari',
-      style: GoogleFonts.inter(
+      style: AppFonts.inter(
         fontSize: 10,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.6,
@@ -532,7 +532,7 @@ class ContactSection extends GetView<PortfolioController> {
       children: [
         Text(
           'BUILT WITH',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 9,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.2,
@@ -546,7 +546,7 @@ class ContactSection extends GetView<PortfolioController> {
 
         Text(
           'FLUTTER',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 9,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.2,
@@ -686,7 +686,7 @@ class _ContactLinkState extends State<_ContactLink> {
                         widget.label,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.inter(
+                        style: AppFonts.inter(
                           fontSize: 8,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1.4,
@@ -704,7 +704,7 @@ class _ContactLinkState extends State<_ContactLink> {
                             ? 2
                             : 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.inter(
+                        style: AppFonts.inter(
                           fontSize: widget.compact ? 12 : 13,
                           fontWeight: FontWeight.w600,
                           height: 1.3,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../app/theme/app_fonts.dart';
 
 class SkillChip extends StatelessWidget {
   final String label;
@@ -37,7 +37,7 @@ class SkillChip extends StatelessWidget {
       child: Text(
         label,
         softWrap: true,
-        style: GoogleFonts.inter(
+        style: AppFonts.inter(
           fontSize: 11,
           fontWeight: FontWeight.w600,
           height: 1.2,

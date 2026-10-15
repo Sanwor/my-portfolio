@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../app/theme/app_fonts.dart';
 
 import '../../controllers/navigation_controller.dart';
 import '../../controllers/theme_controller.dart';
@@ -111,7 +111,7 @@ class PortfolioNavbar extends GetView<NavigationController> {
             children: [
               Text(
                 'SR',
-                style: GoogleFonts.inter(
+                style: AppFonts.inter(
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
                   letterSpacing: -0.8,
@@ -127,7 +127,7 @@ class PortfolioNavbar extends GetView<NavigationController> {
               const SizedBox(width: 10),
               Text(
                 'SANWOR',
-                style: GoogleFonts.inter(
+                style: AppFonts.inter(
                   fontSize: 9,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.5,
@@ -317,7 +317,7 @@ class _DesktopNavItemState extends State<_DesktopNavItem> {
             children: [
               Text(
                 widget.label,
-                style: GoogleFonts.inter(
+                style: AppFonts.inter(
                   fontSize: 11,
                   fontWeight: widget.isActive
                       ? FontWeight.w700

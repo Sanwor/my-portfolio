@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../app/theme/app_fonts.dart';
 
 import '../../controllers/portfolio_controller.dart';
 import '../../utils/constants.dart';
@@ -234,7 +234,7 @@ class SkillsSection extends GetView<PortfolioController> {
         const SizedBox(width: 10),
         Text(
           '04 / SKILLS',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.8,
@@ -265,7 +265,7 @@ class SkillsSection extends GetView<PortfolioController> {
       children: [
         Text(
           'WHAT I WORK WITH',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: headingSize,
             height: 0.98,
             fontWeight: FontWeight.w500,
@@ -283,7 +283,7 @@ class SkillsSection extends GetView<PortfolioController> {
           child: Text(
             'A practical set of technologies and tools I use to build '
             'responsive, reliable and user-focused applications.',
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: isTablet ? 15 : 16,
               fontWeight: FontWeight.w400,
               height: 1.7,
@@ -313,7 +313,7 @@ class SkillsSection extends GetView<PortfolioController> {
       children: [
         Text(
           'WHAT I WORK WITH',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 40,
             fontWeight: FontWeight.w500,
             height: 0.98,
@@ -327,7 +327,7 @@ class SkillsSection extends GetView<PortfolioController> {
         Text(
           'A practical set of technologies and tools I use to build '
           'responsive, reliable and user-focused applications.',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             height: 1.7,
@@ -480,7 +480,7 @@ class _SkillGroup extends StatelessWidget {
               Expanded(
                 child: Text(
                   category.toUpperCase(),
-                  style: GoogleFonts.inter(
+                  style: AppFonts.inter(
                     fontSize: 10,
                     fontWeight: FontWeight.w800,
                     letterSpacing: 1.5,
@@ -496,7 +496,7 @@ class _SkillGroup extends StatelessWidget {
 
               Text(
                 skills.length.toString().padLeft(2, '0'),
-                style: GoogleFonts.oswald(
+                style: AppFonts.oswald(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: colorScheme.primary.withValues(

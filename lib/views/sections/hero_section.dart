@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../app/theme/app_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/fades.dart';
@@ -204,7 +204,7 @@ class HeroSection extends GetView<PortfolioController> {
         const SizedBox(width: 10),
         Text(
           'FLUTTER DEVELOPER · NEPAL',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.8,
@@ -226,7 +226,7 @@ class HeroSection extends GetView<PortfolioController> {
     final textColor = Theme.of(context).colorScheme.onSurface;
     final accent = Theme.of(context).colorScheme.primary;
 
-    final nameStyle = GoogleFonts.oswald(
+    final nameStyle = AppFonts.oswald(
       fontSize: fontSize,
       fontWeight: FontWeight.w900,
       height: 0.84,
@@ -293,7 +293,7 @@ class HeroSection extends GetView<PortfolioController> {
       children: [
         Text(
           controller.role,
-          style: GoogleFonts.poppins(
+          style: AppFonts.poppins(
             fontSize: isCompact ? 21 : 25,
             fontWeight: FontWeight.w700,
             height: 1.1,
@@ -304,7 +304,7 @@ class HeroSection extends GetView<PortfolioController> {
         Text(
           'Building beautiful, responsive and user-focused '
           'mobile experiences with Flutter.',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: isCompact ? 11 : 12,
             height: 1.6,
             fontWeight: FontWeight.w400,
@@ -346,7 +346,7 @@ class HeroSection extends GetView<PortfolioController> {
             children: [
               Text(
                 "Let's collaborate",
-                style: GoogleFonts.inter(
+                style: AppFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
                   color: foreground,
@@ -570,7 +570,7 @@ class HeroSection extends GetView<PortfolioController> {
         Text(
           'SANWOR',
           textAlign: TextAlign.center,
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: fontSize,
             fontWeight: FontWeight.w900,
             height: 0.86,
@@ -584,7 +584,7 @@ class HeroSection extends GetView<PortfolioController> {
         Text(
           'RAJBHANDARI',
           textAlign: TextAlign.center,
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: fontSize,
             fontWeight: FontWeight.w900,
             height: 0.86,
@@ -608,7 +608,7 @@ class HeroSection extends GetView<PortfolioController> {
         Text(
           controller.role,
           textAlign: TextAlign.center,
-          style: GoogleFonts.poppins(
+          style: AppFonts.poppins(
             fontSize: 23,
             fontWeight: FontWeight.w700,
             height: 1.15,
@@ -624,7 +624,7 @@ class HeroSection extends GetView<PortfolioController> {
             'Building beautiful, responsive and user-focused '
             'mobile experiences with Flutter.',
             textAlign: TextAlign.center,
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 12,
               height: 1.55,
               color: textColor.withValues(alpha: 0.58),
@@ -687,7 +687,7 @@ class HeroSection extends GetView<PortfolioController> {
         const SizedBox(width: 7),
         Text(
           'SCROLL TO EXPLORE',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 9,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.4,
@@ -806,7 +806,7 @@ class _HeroSocialButtonState
                   const SizedBox(width: 8),
                   Text(
                     widget.label,
-                    style: GoogleFonts.inter(
+                    style: AppFonts.inter(
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                       color: widget.foregroundColor,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../app/theme/app_fonts.dart';
 
 import '../../controllers/navigation_controller.dart';
 
@@ -117,7 +117,7 @@ class MobileNavigationDrawer
             ),
             child: Text(
               'SR',
-              style: GoogleFonts.inter(
+              style: AppFonts.inter(
                 fontSize: 15,
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.4,
@@ -135,7 +135,7 @@ class MobileNavigationDrawer
               children: [
                 Text(
                   'Sanwor Rajbhandari',
-                  style: GoogleFonts.inter(
+                  style: AppFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     color: colorScheme.onSurface,
@@ -144,7 +144,7 @@ class MobileNavigationDrawer
                 const SizedBox(height: 3),
                 Text(
                   'Flutter Developer',
-                  style: GoogleFonts.inter(
+                  style: AppFonts.inter(
                     fontSize: 10,
                     fontWeight: FontWeight.w500,
                     letterSpacing: 0.2,
@@ -201,7 +201,7 @@ class MobileNavigationDrawer
           const SizedBox(width: 8),
           Text(
             'AVAILABLE FOR OPPORTUNITIES',
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 8,
               fontWeight: FontWeight.w700,
               letterSpacing: 1.25,
@@ -293,7 +293,7 @@ class _DrawerNavItemState
                       widget.index
                           .toString()
                           .padLeft(2, '0'),
-                      style: GoogleFonts.inter(
+                      style: AppFonts.inter(
                         fontSize: 9,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5,
@@ -306,7 +306,7 @@ class _DrawerNavItemState
                   Expanded(
                     child: Text(
                       widget.label,
-                      style: GoogleFonts.inter(
+                      style: AppFonts.inter(
                         fontSize: 13,
                         fontWeight: widget.isActive
                             ? FontWeight.w700

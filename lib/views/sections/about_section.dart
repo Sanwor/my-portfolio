@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../app/theme/app_fonts.dart';
 import 'package:my_portfolio/data/portfolio_data.dart';
 import 'package:my_portfolio/utils/breakpoints.dart';
 
@@ -239,7 +239,7 @@ class AboutSection extends GetView<PortfolioController> {
         const SizedBox(width: 10),
         Text(
           '01 / ABOUT',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.8,
@@ -268,7 +268,7 @@ class AboutSection extends GetView<PortfolioController> {
       children: [
         Text(
           'I BUILD DIGITAL',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: titleSize,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -278,7 +278,7 @@ class AboutSection extends GetView<PortfolioController> {
         ),
         Text(
           'EXPERIENCES WITH',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: titleSize,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -288,7 +288,7 @@ class AboutSection extends GetView<PortfolioController> {
         ),
         Text(
           'CLARITY & PURPOSE.',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: titleSize,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -309,7 +309,7 @@ class AboutSection extends GetView<PortfolioController> {
             'I’m a Flutter developer focused on turning '
             'ideas into reliable, responsive and '
             'thoughtfully crafted mobile experiences.',
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: isTablet ? 16 : 18,
               height: 1.55,
               fontWeight: FontWeight.w400,
@@ -335,7 +335,7 @@ class AboutSection extends GetView<PortfolioController> {
       children: [
         Text(
           'I BUILD DIGITAL',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 50,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -345,7 +345,7 @@ class AboutSection extends GetView<PortfolioController> {
         ),
         Text(
           'EXPERIENCES WITH',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 50,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -355,7 +355,7 @@ class AboutSection extends GetView<PortfolioController> {
         ),
         Text(
           'CLARITY.',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 50,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -368,7 +368,7 @@ class AboutSection extends GetView<PortfolioController> {
           'Flutter developer focused on building '
           'reliable, responsive and thoughtful '
           'mobile experiences.',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 14,
             height: 1.6,
             color: colorScheme.onSurface
@@ -423,7 +423,7 @@ class AboutSection extends GetView<PortfolioController> {
       children: [
         Text(
           'A LITTLE MORE ABOUT ME',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.6,
@@ -441,7 +441,7 @@ class AboutSection extends GetView<PortfolioController> {
             ),
             child: Text(
               paragraph,
-              style: GoogleFonts.inter(
+              style: AppFonts.inter(
                 fontSize: 16,
                 height: 1.75,
                 fontWeight: FontWeight.w400,
@@ -533,7 +533,7 @@ class AboutSection extends GetView<PortfolioController> {
         children: [
           Text(
             value,
-            style: GoogleFonts.oswald(
+            style: AppFonts.oswald(
               fontSize: 25,
               fontWeight: FontWeight.w700,
               height: 1,
@@ -544,7 +544,7 @@ class AboutSection extends GetView<PortfolioController> {
           const SizedBox(height: 7),
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 8,
               fontWeight: FontWeight.w700,
               letterSpacing: 1.1,
@@ -665,7 +665,7 @@ class AboutSection extends GetView<PortfolioController> {
             children: [
               Text(
                 number,
-                style: GoogleFonts.inter(
+                style: AppFonts.inter(
                   fontSize: 9,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1,
@@ -683,7 +683,7 @@ class AboutSection extends GetView<PortfolioController> {
           const SizedBox(height: 28),
           Text(
             title,
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 11,
               fontWeight: FontWeight.w800,
               letterSpacing: 1.1,
@@ -693,7 +693,7 @@ class AboutSection extends GetView<PortfolioController> {
           const SizedBox(height: 10),
           Text(
             description,
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 11,
               height: 1.6,
               color: colorScheme.onSurface
@@ -774,7 +774,7 @@ class AboutSection extends GetView<PortfolioController> {
             width: 100,
             child: Text(
               value,
-              style: GoogleFonts.oswald(
+              style: AppFonts.oswald(
                 fontSize: 23,
                 fontWeight: FontWeight.w700,
                 color: colorScheme.onSurface,
@@ -784,7 +784,7 @@ class AboutSection extends GetView<PortfolioController> {
           Expanded(
             child: Text(
               label,
-              style: GoogleFonts.inter(
+              style: AppFonts.inter(
                 fontSize: 8,
                 fontWeight: FontWeight.w700,
                 letterSpacing: 1,
@@ -817,7 +817,7 @@ class AboutSection extends GetView<PortfolioController> {
       children: [
         Text(
           'A LITTLE MORE ABOUT ME',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 9,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.5,
@@ -833,7 +833,7 @@ class AboutSection extends GetView<PortfolioController> {
             ),
             child: Text(
               paragraph,
-              style: GoogleFonts.inter(
+              style: AppFonts.inter(
                 fontSize: 14,
                 height: 1.7,
                 color: colorScheme.onSurface

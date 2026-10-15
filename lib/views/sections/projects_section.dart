@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../app/theme/app_fonts.dart';
 
 import '../../controllers/portfolio_controller.dart';
 import '../../utils/breakpoints.dart';
@@ -162,7 +162,7 @@ class ProjectsSection extends GetView<PortfolioController> {
         const SizedBox(width: 10),
         Text(
           '03 / PROJECTS',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 12,
             fontWeight: FontWeight.w700,
             letterSpacing: 2.2,
@@ -184,7 +184,7 @@ class ProjectsSection extends GetView<PortfolioController> {
 
     return RichText(
       text: TextSpan(
-        style: GoogleFonts.oswald(
+        style: AppFonts.oswald(
           fontSize: fontSize,
           height: 0.98,
           fontWeight: FontWeight.w500,
@@ -197,7 +197,7 @@ class ProjectsSection extends GetView<PortfolioController> {
           ),
           TextSpan(
             text: mobile ? 'WORK.' : 'WORK.',
-            style: GoogleFonts.oswald(
+            style: AppFonts.oswald(
               fontSize: fontSize,
               height: 0.98,
               fontWeight: FontWeight.w500,

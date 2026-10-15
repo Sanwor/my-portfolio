@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../utils/constants.dart';
+import 'app_fonts.dart';
+
+export 'app_fonts.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
+      fontFamily: AppFonts.interFamily,
       brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.lightBackground,
       colorScheme: const ColorScheme.light(
         primary: AppColors.lightAccent,
         surface: AppColors.lightSurface,
       ),
-      textTheme: GoogleFonts.interTextTheme().copyWith(
-        displayLarge: GoogleFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.bold),
-        displayMedium: GoogleFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.bold),
-        displaySmall: GoogleFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.bold),
-        headlineMedium: GoogleFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.w600),
-        titleLarge: GoogleFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.w600),
-        bodyLarge: GoogleFonts.inter(color: AppColors.lightSecondaryText),
-        bodyMedium: GoogleFonts.inter(color: AppColors.lightSecondaryText),
+      textTheme: AppFonts.interTextTheme().copyWith(
+        displayLarge: AppFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.bold),
+        displayMedium: AppFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.bold),
+        displaySmall: AppFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.bold),
+        headlineMedium: AppFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.w600),
+        titleLarge: AppFonts.inter(color: AppColors.lightPrimaryText, fontWeight: FontWeight.w600),
+        bodyLarge: AppFonts.inter(color: AppColors.lightSecondaryText),
+        bodyMedium: AppFonts.inter(color: AppColors.lightSecondaryText),
       ),
       useMaterial3: true,
     );
@@ -26,20 +29,21 @@ class AppTheme {
 
   static ThemeData get darkTheme {
     return ThemeData(
+      fontFamily: AppFonts.interFamily,
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.darkBackground,
       colorScheme: const ColorScheme.dark(
         primary: AppColors.darkAccent,
         surface: AppColors.darkSurface,
       ),
-      textTheme: GoogleFonts.interTextTheme().copyWith(
-        displayLarge: GoogleFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.bold),
-        displayMedium: GoogleFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.bold),
-        displaySmall: GoogleFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.bold),
-        headlineMedium: GoogleFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.w600),
-        titleLarge: GoogleFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.w600),
-        bodyLarge: GoogleFonts.inter(color: AppColors.darkSecondaryText),
-        bodyMedium: GoogleFonts.inter(color: AppColors.darkSecondaryText),
+      textTheme: AppFonts.interTextTheme().copyWith(
+        displayLarge: AppFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.bold),
+        displayMedium: AppFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.bold),
+        displaySmall: AppFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.bold),
+        headlineMedium: AppFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.w600),
+        titleLarge: AppFonts.inter(color: AppColors.darkPrimaryText, fontWeight: FontWeight.w600),
+        bodyLarge: AppFonts.inter(color: AppColors.darkSecondaryText),
+        bodyMedium: AppFonts.inter(color: AppColors.darkSecondaryText),
       ),
       useMaterial3: true,
     );

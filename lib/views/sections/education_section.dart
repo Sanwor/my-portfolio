@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../app/theme/app_fonts.dart';
 
 import '../../controllers/portfolio_controller.dart';
 import '../../utils/breakpoints.dart';
@@ -240,7 +240,7 @@ class EducationSection extends GetView<PortfolioController> {
         const SizedBox(width: 10),
         Text(
           '05 / EDUCATION',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 10,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.8,
@@ -271,7 +271,7 @@ class EducationSection extends GetView<PortfolioController> {
       children: [
         Text(
           'WHERE I',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: headingSize,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -281,7 +281,7 @@ class EducationSection extends GetView<PortfolioController> {
         ),
         Text(
           'BUILT MY',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: headingSize,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -291,7 +291,7 @@ class EducationSection extends GetView<PortfolioController> {
         ),
         Text(
           'FOUNDATION.',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: headingSize,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -312,7 +312,7 @@ class EducationSection extends GetView<PortfolioController> {
             'An academic foundation in information technology '
             'that shaped the way I approach software, problem '
             'solving and product development.',
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: isTablet ? 16 : 18,
               height: 1.55,
               fontWeight: FontWeight.w400,
@@ -342,7 +342,7 @@ class EducationSection extends GetView<PortfolioController> {
       children: [
         Text(
           'WHERE I',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 48,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -352,7 +352,7 @@ class EducationSection extends GetView<PortfolioController> {
         ),
         Text(
           'BUILT MY',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 48,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -362,7 +362,7 @@ class EducationSection extends GetView<PortfolioController> {
         ),
         Text(
           'FOUNDATION.',
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 48,
             fontWeight: FontWeight.w900,
             height: 0.9,
@@ -377,7 +377,7 @@ class EducationSection extends GetView<PortfolioController> {
           'An academic foundation in information technology '
           'that shaped the way I approach software, problem '
           'solving and product development.',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             height: 1.7,
@@ -549,7 +549,7 @@ class EducationSection extends GetView<PortfolioController> {
       children: [
         Text(
           controller.graduationYear,
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: 34,
             fontWeight: FontWeight.w600,
             height: 1,
@@ -562,7 +562,7 @@ class EducationSection extends GetView<PortfolioController> {
 
         Text(
           'GRADUATED',
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: 8,
             fontWeight: FontWeight.w700,
             letterSpacing: 1.4,
@@ -596,7 +596,7 @@ class EducationSection extends GetView<PortfolioController> {
 
         Text(
           controller.degree,
-          style: GoogleFonts.oswald(
+          style: AppFonts.oswald(
             fontSize: compact ? 30 : 34,
             fontWeight: FontWeight.w500,
             height: 1.05,
@@ -613,7 +613,7 @@ class EducationSection extends GetView<PortfolioController> {
 
         Text(
           controller.institution,
-          style: GoogleFonts.inter(
+          style: AppFonts.inter(
             fontSize: compact ? 14 : 15,
             fontWeight: FontWeight.w500,
             height: 1.5,
@@ -645,7 +645,7 @@ class EducationSection extends GetView<PortfolioController> {
 
             Text(
               'BACHELOR\'S DEGREE · COMPLETED',
-              style: GoogleFonts.inter(
+              style: AppFonts.inter(
                 fontSize: 9,
                 fontWeight: FontWeight.w700,
                 letterSpacing: 1.15,
@@ -704,7 +704,7 @@ class EducationSection extends GetView<PortfolioController> {
             children: [
               Text(
                 controller.graduationYear,
-                style: GoogleFonts.oswald(
+                style: AppFonts.oswald(
                   fontSize: 36,
                   fontWeight: FontWeight.w600,
                   height: 1,
@@ -720,7 +720,7 @@ class EducationSection extends GetView<PortfolioController> {
                 ),
                 child: Text(
                   'GRADUATED',
-                  style: GoogleFonts.inter(
+                  style: AppFonts.inter(
                     fontSize: 8,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 1.4,
@@ -740,7 +740,7 @@ class EducationSection extends GetView<PortfolioController> {
 
           Text(
             controller.degree,
-            style: GoogleFonts.oswald(
+            style: AppFonts.oswald(
               fontSize: 29,
               fontWeight: FontWeight.w500,
               height: 1.08,
@@ -757,7 +757,7 @@ class EducationSection extends GetView<PortfolioController> {
 
           Text(
             controller.institution,
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 13,
               fontWeight: FontWeight.w500,
               height: 1.55,
@@ -794,7 +794,7 @@ class EducationSection extends GetView<PortfolioController> {
               Expanded(
                 child: Text(
                   'BACHELOR\'S DEGREE · COMPLETED',
-                  style: GoogleFonts.inter(
+                  style: AppFonts.inter(
                     fontSize: 8,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 1.05,

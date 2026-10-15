@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../app/theme/app_fonts.dart';
 
 import '../models/experience_model.dart';
 import '../utils/constants.dart';
@@ -115,7 +115,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                 widget.experience.position.toUpperCase(),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.oswald(
+                style: AppFonts.oswald(
                   fontSize: 25,
                   height: 1.05,
                   fontWeight: FontWeight.w500,
@@ -128,7 +128,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
 
               Text(
                 widget.experience.company,
-                style: GoogleFonts.inter(
+                style: AppFonts.inter(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.3,
@@ -145,7 +145,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
           child: Text(
             widget.experience.duration.toUpperCase(),
             textAlign: TextAlign.right,
-            style: GoogleFonts.inter(
+            style: AppFonts.inter(
               fontSize: 11,
               fontWeight: FontWeight.w700,
               letterSpacing: 1.2,
