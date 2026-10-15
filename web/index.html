@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <base href="$FLUTTER_BASE_HREF">
+
   <style>
-    /* Initial Flutter loading screen */
+    /* ---------- Initial Flutter loading screen ---------- */
     #app-loader {
+      --mx: 50%;
+      --my: 50%;
       position: fixed;
       inset: 0;
       z-index: 99999;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
       background: #000000;
+      touch-action: none;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      font-family: "SF Pro Display", "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
       opacity: 1;
       visibility: visible;
-      transition:
-        opacity 350ms ease,
-        visibility 350ms ease;
+      transition: opacity 450ms ease, visibility 450ms ease;
+    }
+
+    /* Soft spotlight that follows the pointer */
+    #app-loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        420px circle at var(--mx) var(--my),
+        rgba(168, 85, 247, 0.17),
+        transparent 65%
+      );
     }
 
     #app-loader.loaded {
@@ -24,72 +46,141 @@
       pointer-events: none;
     }
 
+    #loader-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
     .loader-content {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
+      pointer-events: none;
+      transition: transform 450ms ease;
+    }
+
+    #app-loader.loaded .loader-content {
+      transform: scale(1.08);
+    }
+
+    /* Monogram + progress ring (tilts toward the pointer) */
+    .loader-badge {
+      position: relative;
+      width: 132px;
+      height: 132px;
+      display: grid;
+      place-items: center;
+      will-change: transform;
+    }
+
+    .loader-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.55));
+    }
+
+    .ring-track {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.09);
+      stroke-width: 3;
+    }
+
+    .ring-bar {
+      fill: none;
+      stroke: url(#loader-grad);
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+
+    .ring-head {
+      fill: #f3e8ff;
+    }
+
+    .ring-orbit {
+      fill: none;
+      stroke: rgba(192, 132, 252, 0.35);
+      stroke-width: 1;
+      stroke-dasharray: 1.5 9;
+      stroke-linecap: round;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: orbit-spin 24s linear infinite;
     }
 
     .loader-logo {
       color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 48px;
+      font-size: 42px;
       font-weight: 800;
-      letter-spacing: -4px;
+      letter-spacing: -3px;
       line-height: 1;
-      animation: logo-pulse 1.6s ease-in-out infinite;
+      padding-right: 3px;
+      animation: logo-pulse 2.4s ease-in-out infinite;
     }
 
-    .loader-spinner {
-      width: 34px;
-      height: 34px;
-      border: 3px solid rgba(255, 255, 255, 0.12);
-      border-top-color: #a855f7;
-      border-right-color: #7c3aed;
-      border-radius: 50%;
-      animation: loader-spin 0.85s linear infinite;
+    .loader-percent {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
     }
 
-    .loader-text {
+    .loader-status {
+      min-height: 18px;
       color: #a1a1aa;
-      font-family: Arial, Helvetica, sans-serif;
       font-size: 13px;
-      letter-spacing: 1.5px;
+      letter-spacing: 0.4px;
+      animation: status-in 400ms ease both;
     }
 
-    @keyframes loader-spin {
-      to {
-        transform: rotate(360deg);
-      }
+    .loader-hint {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+      text-align: center;
+      color: #71717a;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      pointer-events: none;
+      transition: opacity 500ms ease;
+    }
+
+    @keyframes orbit-spin {
+      to { transform: rotate(360deg); }
     }
 
     @keyframes logo-pulse {
-      0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-      }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.78; transform: scale(0.97); }
+    }
 
-      50% {
-        opacity: 0.7;
-        transform: scale(0.97);
-      }
+    @keyframes status-in {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .loader-logo,
-      .loader-spinner {
+      .ring-orbit,
+      .loader-status {
         animation: none;
       }
 
-     #app-loader {
-       transition: none;
+      #app-loader,
+      .loader-content {
+        transition: none;
       }
     }
   </style>
-  <base href="$FLUTTER_BASE_HREF">
 
-  <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
 
   <!-- Primary SEO -->
@@ -188,24 +279,340 @@
 <body>
   <!-- Initial loading screen -->
   <div id="app-loader" role="status" aria-label="Loading portfolio">
-    <div class="loader-content">
-      <div class="loader-logo">SR</div>
+    <canvas id="loader-canvas" aria-hidden="true"></canvas>
 
-      <div class="loader-spinner"></div>
+    <div class="loader-content" aria-hidden="true">
+      <div class="loader-badge" id="loader-badge">
+        <svg class="loader-ring" viewBox="0 0 132 132">
+          <defs>
+            <linearGradient id="loader-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#c084fc"/>
+              <stop offset="1" stop-color="#7c3aed"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring-orbit" cx="66" cy="66" r="65"/>
+          <circle class="ring-track" cx="66" cy="66" r="58"/>
+          <circle class="ring-bar" id="ring-bar" cx="66" cy="66" r="58"
+                  transform="rotate(-90 66 66)"/>
+          <g id="ring-head" transform="rotate(-90 66 66)">
+            <circle class="ring-head" cx="124" cy="66" r="4.5"/>
+          </g>
+        </svg>
+        <div class="loader-logo">SR</div>
+      </div>
 
-      <div class="loader-text">LOADING PORTFOLIO</div>
+      <div class="loader-percent" id="loader-percent">0%</div>
+      <div class="loader-status" id="loader-status">Warming up the engine</div>
     </div>
+
+    <div class="loader-hint" id="loader-hint" aria-hidden="true">Move your cursor to play</div>
   </div>
 
-  <!-- Hide the loader when Flutter renders its first frame -->
   <script>
-    window.addEventListener('flutter-first-frame', function () {
-      const loader = document.getElementById('app-loader');
+    (function () {
+      var loader = document.getElementById('app-loader');
+      if (!loader) return;
 
-      if (loader) {
-        loader.classList.add('loaded');
+      var canvas = document.getElementById('loader-canvas');
+      var ctx = canvas.getContext('2d');
+      var badge = document.getElementById('loader-badge');
+      var bar = document.getElementById('ring-bar');
+      var head = document.getElementById('ring-head');
+      var pct = document.getElementById('loader-percent');
+      var status = document.getElementById('loader-status');
+      var hint = document.getElementById('loader-hint');
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var isTouch = window.matchMedia('(pointer: coarse)').matches;
+      hint.textContent = isTouch ? 'Tap anywhere to make sparks' : 'Move your cursor, click to make sparks';
+
+      var CIRC = 2 * Math.PI * 58;
+      bar.style.strokeDasharray = CIRC;
+      bar.style.strokeDashoffset = CIRC;
+
+      var STEPS = [
+        [0,  'Warming up the engine'],
+        [22, 'Fetching Dart code'],
+        [46, 'Laying out widgets'],
+        [70, 'Painting pixels'],
+        [90, 'Almost there'],
+        [100, 'Ready']
+      ];
+
+      var w = 0, h = 0, dpr = 1;
+      var particles = [], sparks = [], ripples = [];
+      var pointer = { x: -9999, y: -9999, active: false, pressed: false };
+      var tilt = { rx: 0, ry: 0, tx: 0, ty: 0, s: 1 };
+      var tiltTarget = { rx: 0, ry: 0, tx: 0, ty: 0, s: 1 };
+
+      var start = performance.now();
+      var shown = 0, done = false, stepIndex = -1, raf = 0, slowShown = false;
+
+      var LINK = 110, REACH = 150;
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        var count = Math.max(28, Math.min(90, Math.round((w * h) / 14000)));
+        while (particles.length < count) {
+          var a = Math.random() * Math.PI * 2;
+          var sp = 0.12 + Math.random() * 0.28;
+          particles.push({
+            x: Math.random() * w, y: Math.random() * h,
+            bx: Math.cos(a) * sp, by: Math.sin(a) * sp,
+            vx: 0, vy: 0, r: 1 + Math.random() * 1.6
+          });
+        }
+        particles.length = count;
       }
-    });
+
+      function burst(x, y) {
+        ripples.push({ x: x, y: y, r: 8, a: 0.55 });
+        for (var i = 0; i < 18 && sparks.length < 220; i++) {
+          var ang = Math.random() * Math.PI * 2;
+          var sp = 1.5 + Math.random() * 3.5;
+          sparks.push({ x: x, y: y, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, life: 1 });
+        }
+        for (var j = 0; j < particles.length; j++) {
+          var p = particles[j];
+          var dx = p.x - x, dy = p.y - y;
+          var d = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (d < 240) {
+            var f = (1 - d / 240) * 6;
+            p.vx += (dx / d) * f;
+            p.vy += (dy / d) * f;
+          }
+        }
+      }
+
+      function setPointer(e) {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        pointer.active = true;
+        loader.style.setProperty('--mx', e.clientX + 'px');
+        loader.style.setProperty('--my', e.clientY + 'px');
+
+        var nx = (e.clientX - w / 2) / (w / 2);
+        var ny = (e.clientY - h / 2) / (h / 2);
+        tiltTarget.ry = nx * 16;
+        tiltTarget.rx = -ny * 16;
+        tiltTarget.tx = nx * 10;
+        tiltTarget.ty = ny * 10;
+      }
+
+      function releasePointer() {
+        pointer.active = false;
+        tiltTarget.rx = tiltTarget.ry = tiltTarget.tx = tiltTarget.ty = 0;
+      }
+
+      function onDown(e) {
+        setPointer(e);
+        pointer.pressed = true;
+        tiltTarget.s = 0.94;
+        burst(e.clientX, e.clientY);
+        hint.style.opacity = '0';
+      }
+
+      function onUp(e) {
+        pointer.pressed = false;
+        tiltTarget.s = 1;
+        if (e.pointerType !== 'mouse') releasePointer();
+      }
+
+      function stepProgress(now) {
+        var t = (now - start) / 1000;
+        var target = done ? 100 : 92 * (1 - Math.exp(-t / 2.4));
+        shown += (target - shown) * (done ? 0.14 : 0.06);
+        if (shown > 99.6) shown = 100;
+
+        var p = shown / 100;
+        bar.style.strokeDashoffset = CIRC * (1 - p);
+        head.setAttribute('transform', 'rotate(' + (p * 360 - 90) + ' 66 66)');
+        pct.textContent = Math.round(shown) + '%';
+
+        var idx = 0;
+        for (var i = 0; i < STEPS.length; i++) if (shown >= STEPS[i][0]) idx = i;
+        if (idx !== stepIndex) {
+          stepIndex = idx;
+          var clone = status.cloneNode(false);
+          clone.textContent = STEPS[idx][1];
+          status.parentNode.replaceChild(clone, status);
+          status = clone;
+        }
+
+        if (!done && !slowShown && t > 12) {
+          slowShown = true;
+          var c = status.cloneNode(false);
+          c.textContent = 'Taking a little longer than usual';
+          status.parentNode.replaceChild(c, status);
+          status = c;
+          stepIndex = -2;
+        }
+      }
+
+      function stepTilt() {
+        var k = 0.12;
+        tilt.rx += (tiltTarget.rx - tilt.rx) * k;
+        tilt.ry += (tiltTarget.ry - tilt.ry) * k;
+        tilt.tx += (tiltTarget.tx - tilt.tx) * k;
+        tilt.ty += (tiltTarget.ty - tilt.ty) * k;
+        tilt.s  += (tiltTarget.s  - tilt.s)  * 0.18;
+        badge.style.transform =
+          'perspective(600px) translate3d(' + tilt.tx.toFixed(2) + 'px,' + tilt.ty.toFixed(2) + 'px,0)' +
+          ' rotateX(' + tilt.rx.toFixed(2) + 'deg) rotateY(' + tilt.ry.toFixed(2) + 'deg)' +
+          ' scale(' + tilt.s.toFixed(3) + ')';
+      }
+
+      function drawField() {
+        ctx.clearRect(0, 0, w, h);
+        var i, j, p, q, dx, dy, d2, d;
+
+        for (i = 0; i < particles.length; i++) {
+          p = particles[i];
+
+          // ease back toward each particle's own drift
+          p.vx += (p.bx - p.vx) * 0.03;
+          p.vy += (p.by - p.vy) * 0.03;
+
+          if (pointer.active) {
+            dx = pointer.x - p.x;
+            dy = pointer.y - p.y;
+            d2 = dx * dx + dy * dy;
+            if (d2 < REACH * REACH) {
+              d = Math.sqrt(d2) || 1;
+              var f = (1 - d / REACH) * 0.09;
+              // pull in from afar, push away when too close
+              var dir = d > 60 ? 1 : -2.2;
+              p.vx += (dx / d) * f * dir;
+              p.vy += (dy / d) * f * dir;
+            }
+          }
+
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10; else if (p.y > h + 10) p.y = -10;
+        }
+
+        // links between nearby particles
+        ctx.lineWidth = 1;
+        for (i = 0; i < particles.length; i++) {
+          p = particles[i];
+          for (j = i + 1; j < particles.length; j++) {
+            q = particles[j];
+            dx = p.x - q.x;
+            dy = p.y - q.y;
+            d2 = dx * dx + dy * dy;
+            if (d2 < LINK * LINK) {
+              ctx.strokeStyle = 'rgba(168,85,247,' + ((1 - Math.sqrt(d2) / LINK) * 0.28).toFixed(3) + ')';
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // links from the pointer to nearby particles
+        if (pointer.active) {
+          for (i = 0; i < particles.length; i++) {
+            p = particles[i];
+            dx = pointer.x - p.x;
+            dy = pointer.y - p.y;
+            d2 = dx * dx + dy * dy;
+            if (d2 < REACH * REACH) {
+              ctx.strokeStyle = 'rgba(216,180,254,' + ((1 - Math.sqrt(d2) / REACH) * 0.5).toFixed(3) + ')';
+              ctx.beginPath();
+              ctx.moveTo(pointer.x, pointer.y);
+              ctx.lineTo(p.x, p.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // particles
+        ctx.fillStyle = 'rgba(192,132,252,0.75)';
+        for (i = 0; i < particles.length; i++) {
+          p = particles[i];
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+          ctx.fill();
+        }
+
+        // ripples
+        for (i = ripples.length - 1; i >= 0; i--) {
+          var r = ripples[i];
+          r.r += 4;
+          r.a -= 0.014;
+          if (r.a <= 0) { ripples.splice(i, 1); continue; }
+          ctx.strokeStyle = 'rgba(168,85,247,' + r.a.toFixed(3) + ')';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, r.r, 0, 6.2832);
+          ctx.stroke();
+        }
+
+        // sparks
+        for (i = sparks.length - 1; i >= 0; i--) {
+          var s = sparks[i];
+          s.x += s.vx;
+          s.y += s.vy;
+          s.vx *= 0.95;
+          s.vy *= 0.95;
+          s.life -= 0.022;
+          if (s.life <= 0) { sparks.splice(i, 1); continue; }
+          ctx.fillStyle = 'rgba(233,213,255,' + s.life.toFixed(3) + ')';
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, 1.2 + s.life * 1.4, 0, 6.2832);
+          ctx.fill();
+        }
+      }
+
+      function frame(now) {
+        raf = requestAnimationFrame(frame);
+        stepProgress(now);
+        if (!reduceMotion) {
+          stepTilt();
+          drawField();
+        }
+      }
+
+      function finish() {
+        loader.classList.add('loaded');
+        setTimeout(function () {
+          cancelAnimationFrame(raf);
+          window.removeEventListener('resize', resize);
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, 600);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+
+      if (!reduceMotion) {
+        loader.addEventListener('pointermove', setPointer);
+        loader.addEventListener('pointerdown', onDown);
+        loader.addEventListener('pointerup', onUp);
+        loader.addEventListener('pointercancel', onUp);
+        loader.addEventListener('pointerleave', releasePointer);
+      } else {
+        canvas.style.display = 'none';
+        hint.style.display = 'none';
+      }
+
+      raf = requestAnimationFrame(frame);
+
+      // Flutter rendered its first frame: fill the ring, then reveal the app
+      window.addEventListener('flutter-first-frame', function () {
+        done = true;
+        setTimeout(finish, 700);
+      });
+    })();
   </script>
 
   <!-- Start Flutter -->
