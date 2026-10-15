@@ -27,18 +27,17 @@ class PortfolioData {
   static const String linkedin = 'https://linkedin.com/in/sanwor';
 
   /// Updated to getter to interpolate dynamic experience
-  static String get aboutMe =>
-      'I’m a Flutter developer focused on turning ideas into reliable, '
-      'responsive and thoughtfully crafted mobile experiences. My work '
-      'sits at the intersection of product thinking and practical '
-      'engineering—building interfaces that feel simple while the '
-      'underlying architecture remains maintainable.\n\n'
-      'With $formattedExperience of production experience, I’ve worked with '
-      'REST APIs, GetX, Firebase, geolocation and responsive UI, '
-      'including applications used in real-world environments. '
-      'I enjoy solving the details that make an application feel '
-      'fast, stable and intentional—from API-driven screens and '
-      'state management to performance and responsive behavior.';
+  static String get aboutMe => 
+  'I’m Sanwor Rajbhandari, a Flutter developer based in ' 
+  'Bhaktapur, Nepal, focused on building modern, reliable and ' 
+  'responsive mobile and web applications.\n\n' 
+  'With $formattedExperience of production experience, I’ve worked ' 
+  'with Flutter, Dart, GetX, REST APIs, Firebase, geolocation and ' 
+  'responsive UI to build applications for real-world environments. ' 
+  'I enjoy turning ideas into practical digital products and solving ' 
+  'the details that make an application feel fast, stable and ' 
+  'intentional—from API-driven screens and state management to ' 
+  'performance, responsive behavior and polished user experiences.';
 
   // Experience
   static const List<ExperienceModel> experiences = [
@@ -81,7 +80,7 @@ class PortfolioData {
       title: 'しゅぷり 守成クラブ',
       subtitle: 'Geographic-aware retail management application(Japan)',
       features: [
-        'Engineered a geographic-aware mobile application to map and manage retail store locations across Japan.',
+        'Developed a geographic-aware mobile application to map and manage retail store locations across Japan.',
         'Implemented location-based services to filter and display nearby stores, optimizing the user experience for seamless navigation and accessibility.',
       ],
       technologies: ['Flutter', 'Geolocation', 'REST APIs'],

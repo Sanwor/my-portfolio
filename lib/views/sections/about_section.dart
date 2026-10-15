@@ -747,7 +747,7 @@ class AboutSection extends GetView<PortfolioController> {
           _buildMobileStat(
             context,
             value: 'NEPAL',
-            label: 'BASED IN BHaktapur',
+            label: 'BASED IN Bhaktapur',
             isLast: true,
           ),
         ],
