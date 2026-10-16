@@ -24,7 +24,7 @@ class PortfolioData {
   static const String location = 'Bhaktapur, Nepal';
   static const String email = 'sanwor.pd@gmail.com';
   static const String github = 'https://github.com/Sanwor';
-  static const String linkedin = 'https://linkedin.com/in/sanwor';
+  static const String linkedin = 'https://linkedin.com/in/sanwor-rajbhandari-756428228/';
 
   /// Updated to getter to interpolate dynamic experience
   static String get aboutMe => 

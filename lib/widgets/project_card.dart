@@ -42,7 +42,7 @@ class _ProjectCardState extends State<ProjectCard> {
       builder: (context, constraints) {
         final width = constraints.maxWidth;
         final hasBoundedHeight = constraints.maxHeight.isFinite;
-        
+
         final isSmallMobile = width < 360;
         final isMobile = width < 700;
         final isTablet = width >= 700 && width < 1180;
@@ -112,9 +112,9 @@ class _ProjectCardState extends State<ProjectCard> {
                           ),
                         ],
                       ),
-                      
+
                       SizedBox(height: isMobile ? 16 : 20),
-                      
+
                       // ROW 2: Subtitle & Tag
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,20 +134,30 @@ class _ProjectCardState extends State<ProjectCard> {
                           ),
                           const SizedBox(width: 12),
                           _ProjectTypeLabel(
-                            isProfessional: widget.project.isProfessional, 
-                            compact: isSmallMobile || isTablet
+                            isProfessional: widget.project.isProfessional,
+                            compact: isSmallMobile || isTablet,
                           ),
                         ],
                       ),
-                      
-                      // Responsive Spacer (Pushes links to bottom in grid layout, acts as fixed gap in mobile list)
-                      if (hasBoundedHeight) const Spacer() else SizedBox(height: isMobile ? 18 : 24),
-                      
-                      // BOTTOM ROW: Action Links (Replaced "View Details" text)
+
+                      // MIDDLE: In grid layout (bounded height) this area fills the space between
+                      // the header and the action links with a short preview, so the card no
+                      // longer has a big empty gap. In the mobile list it stays a fixed gap.
+                      if (hasBoundedHeight)
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 18, bottom: 16),
+                            child: _ProjectPreview(project: widget.project),
+                          ),
+                        )
+                      else
+                        SizedBox(height: isMobile ? 18 : 24),
+
+                      // BOTTOM ROW: Action Links
                       _ProjectActions(
-                        project: widget.project, 
-                        compact: true, 
-                        onLaunch: _launchUrl
+                        project: widget.project,
+                        compact: true,
+                        onLaunch: _launchUrl,
                       ),
                     ],
                   ),
@@ -157,6 +167,46 @@ class _ProjectCardState extends State<ProjectCard> {
           ),
         );
       },
+    );
+  }
+}
+
+// Short preview shown inside the card: top features + a few technology chips.
+// Anything that doesn't fit the available height is clipped instead of overflowing.
+class _ProjectPreview extends StatelessWidget {
+  final ProjectModel project;
+
+  const _ProjectPreview({required this.project});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRect(
+      child: OverflowBox(
+        alignment: Alignment.topLeft,
+        minHeight: 0,
+        maxHeight: double.infinity,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (project.features.isNotEmpty) ...[
+              _ProjectFeatures(
+                project: project,
+                compact: true,
+                maxItems: 3,
+                maxLines: 2,
+              ),
+              const SizedBox(height: 4),
+            ],
+            if (project.technologies.isNotEmpty)
+              _ProjectTechnologies(
+                technologies: project.technologies,
+                compact: true,
+                maxItems: 5,
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -224,15 +274,15 @@ class _ProjectDetailDialog extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    
+
                     // Show large image in dialog
                     _ProjectImage(
                       project: project,
-                      aspectRatio: 2.0, 
+                      aspectRatio: 2.0,
                       isHovered: false,
                     ),
                     const SizedBox(height: 24),
-                    
+
                     Text(
                       "Key Features",
                       style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -240,7 +290,7 @@ class _ProjectDetailDialog extends StatelessWidget {
                     const SizedBox(height: 12),
                     _ProjectFeatures(project: project, compact: false),
                     const SizedBox(height: 24),
-                    
+
                     Text(
                       "Technologies",
                       style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -248,7 +298,7 @@ class _ProjectDetailDialog extends StatelessWidget {
                     const SizedBox(height: 12),
                     _ProjectTechnologies(technologies: project.technologies, compact: false),
                     const SizedBox(height: 32),
-                    
+
                     _ProjectActions(project: project, compact: false, onLaunch: onLaunch),
                   ],
                 ),
@@ -317,16 +367,25 @@ class _ImageFallback extends StatelessWidget {
 class _ProjectFeatures extends StatelessWidget {
   final ProjectModel project;
   final bool compact;
+  final int? maxItems; // null = show all
+  final int? maxLines; // null = no line limit
 
-  const _ProjectFeatures({required this.project, required this.compact});
+  const _ProjectFeatures({
+    required this.project,
+    required this.compact,
+    this.maxItems,
+    this.maxLines,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final features = maxItems == null ? project.features : project.features.take(maxItems!).toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: project.features.map((feature) {
+      children: features.map((feature) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 11),
           child: Row(
@@ -345,6 +404,8 @@ class _ProjectFeatures extends StatelessWidget {
               Expanded(
                 child: Text(
                   feature,
+                  maxLines: maxLines,
+                  overflow: maxLines == null ? null : TextOverflow.ellipsis,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontSize: compact ? 12 : 13.5,
                     height: 1.55,
@@ -363,17 +424,27 @@ class _ProjectFeatures extends StatelessWidget {
 class _ProjectTechnologies extends StatelessWidget {
   final List<String> technologies;
   final bool compact;
+  final int? maxItems; // null = show all; extra items collapse into a "+N" chip
 
-  const _ProjectTechnologies({required this.technologies, required this.compact});
+  const _ProjectTechnologies({
+    required this.technologies,
+    required this.compact,
+    this.maxItems,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+
+    final visible = maxItems == null ? technologies : technologies.take(maxItems!).toList();
+    final hidden = technologies.length - visible.length;
+    final labels = <String>[...visible, if (hidden > 0) '+$hidden'];
+
     return Wrap(
       spacing: 7,
       runSpacing: 7,
-      children: technologies.map((technology) {
+      children: labels.map((technology) {
         return Container(
           padding: EdgeInsets.symmetric(horizontal: compact ? 9 : 10, vertical: compact ? 5 : 6),
           decoration: BoxDecoration(
