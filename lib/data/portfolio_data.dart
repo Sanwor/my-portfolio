@@ -77,7 +77,7 @@ class PortfolioData {
   // Projects
   static const List<ProjectModel> projects = [
     ProjectModel(
-      title: 'しゅぷり 守成クラブ',
+      title: 'メガペトロ株式会社',
       subtitle: 'Official smartphone app for all Mega Petro gas station users, making your daily refueling and car care more convenient and rewarding',
       features: [
         'Developed a mobile application for Mega Petro customers in Japan, providing exclusive fuel discounts, car care offers, and membership benefits.',
@@ -86,7 +86,7 @@ class PortfolioData {
       ],
       technologies: ['Flutter', 'Geolocation', 'REST APIs', 'Barcode'],
       playstoreUrl: 'https://play.google.com/store/apps/details?id=jp.megapetro',
-      // appstoreUrl: 'https://apps.apple.com/jp/app/%E3%81%97%E3%82%85%E3%81%B7%E3%82%8A/id6761531854',
+      appstoreUrl: 'https://apps.apple.com/jp/app/%E3%83%A1%E3%82%AC%E3%83%9A%E3%83%88%E3%83%AD%E5%85%AC%E5%BC%8F%E3%82%A2%E3%83%97%E3%83%AA/id6806189282',
       imageAsset: 'assets/images/petras.png',
       isProfessional: true,
     ),
