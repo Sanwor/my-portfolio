@@ -27,6 +27,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final isMobile = MediaQuery.of(context).size.width < 600;
 
     final borderColor = widget.isCurrent
         ? colorScheme.primary.withValues(alpha: 0.45)
@@ -37,13 +38,13 @@ class _ExperienceCardState extends State<ExperienceCard> {
         : colorScheme.surface;
 
     final cardContent = Padding(
-      padding: const EdgeInsets.all(AppSpacing.xl),
+      padding: EdgeInsets.all(isMobile ? 16.0 : AppSpacing.xl),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(context),
+          _buildHeader(context, isMobile: isMobile),
 
-          const SizedBox(height: 22),
+          SizedBox(height: isMobile ? 14 : 20),
 
           Container(
             height: 1,
@@ -51,16 +52,14 @@ class _ExperienceCardState extends State<ExperienceCard> {
             color: theme.dividerColor.withValues(alpha: 0.28),
           ),
 
-          const SizedBox(height: 20),
+          SizedBox(height: isMobile ? 14 : 20),
 
-          // IMPORTANT:
-          // Only use Expanded when the card has a finite height.
           if (widget.fixedHeight != null)
             Expanded(
-              child: _buildResponsibilities(context),
+              child: _buildResponsibilities(context, isMobile: isMobile),
             )
           else
-            _buildResponsibilities(context),
+            _buildResponsibilities(context, isMobile: isMobile),
         ],
       ),
     );
@@ -100,64 +99,101 @@ class _ExperienceCardState extends State<ExperienceCard> {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, {required bool isMobile}) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Row(
+    // Date Chip Widget
+    final dateChip = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: colorScheme.primary.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: colorScheme.primary.withValues(alpha: 0.25),
+          width: 1,
+        ),
+      ),
+      child: Text(
+        widget.experience.duration.toUpperCase(),
+        style: AppFonts.inter(
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.0,
+          color: colorScheme.primary,
+        ),
+      ),
+    );
+
+    // 1. MOBILE LAYOUT: Stacked vertically
+    if (isMobile) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.experience.position.toUpperCase(),
+            style: AppFonts.oswald(
+              fontSize: 20,
+              height: 1.1,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.2,
+              color: colorScheme.onSurface,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            widget.experience.company,
+            style: AppFonts.inter(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.3,
+              color: colorScheme.onSurface.withValues(alpha: 0.7),
+            ),
+          ),
+          const SizedBox(height: 10),
+          dateChip,
+        ],
+      );
+    }
+
+    // 2. DESKTOP & TABLET LAYOUT: Position and Date side-by-side with minimal spacing
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Text(
                 widget.experience.position.toUpperCase(),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
                 style: AppFonts.oswald(
-                  fontSize: 25,
-                  height: 1.05,
+                  fontSize: 24,
+                  height: 1.1,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 0.2,
                   color: colorScheme.onSurface,
                 ),
               ),
-
-              const SizedBox(height: 8),
-
-              Text(
-                widget.experience.company,
-                style: AppFonts.inter(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.3,
-                  color: colorScheme.primary,
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        const SizedBox(width: 20),
-
-        Flexible(
-          child: Text(
-            widget.experience.duration.toUpperCase(),
-            textAlign: TextAlign.right,
-            style: AppFonts.inter(
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.2,
-              color: colorScheme.onSurface.withValues(alpha: 0.52),
             ),
+            const SizedBox(width: 16),
+            dateChip,
+          ],
+        ),
+        const SizedBox(height: 6),
+        Text(
+          widget.experience.company,
+          style: AppFonts.inter(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.3,
+            color: colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildResponsibilities(BuildContext context) {
+  Widget _buildResponsibilities(BuildContext context, {required bool isMobile}) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -166,14 +202,14 @@ class _ExperienceCardState extends State<ExperienceCard> {
       children: widget.experience.responsibilities.map(
         (responsibility) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 11),
+            padding: EdgeInsets.only(bottom: isMobile ? 8 : 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   margin: const EdgeInsets.only(
                     top: 7,
-                    right: 11,
+                    right: 9,
                   ),
                   width: 4,
                   height: 4,
@@ -184,13 +220,12 @@ class _ExperienceCardState extends State<ExperienceCard> {
                     shape: BoxShape.circle,
                   ),
                 ),
-
                 Expanded(
                   child: Text(
                     responsibility,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      fontSize: 14,
-                      height: 1.55,
+                      fontSize: isMobile ? 13 : 14,
+                      height: 1.5,
                       color: colorScheme.onSurface.withValues(
                         alpha: 0.72,
                       ),
