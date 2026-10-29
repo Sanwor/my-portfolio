@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../../app/theme/app_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../utils/breakpoints.dart';
+import '../../utils/constants.dart';
 import '../../utils/fades.dart';
 import '../../controllers/navigation_controller.dart';
 import '../../controllers/portfolio_controller.dart';
@@ -10,13 +12,13 @@ import '../../controllers/portfolio_controller.dart';
 class HeroSection extends GetView<PortfolioController> {
   const HeroSection({super.key});
 
-  static const double _maxContentWidth = 1280;
+  static const double _maxContentWidth = AppSpacing.maxContentWidth;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < 700) {
+        if (constraints.maxWidth < Breakpoints.mobile) {
           return _buildMobile(context, constraints.maxWidth);
         }
 
@@ -31,7 +33,8 @@ class HeroSection extends GetView<PortfolioController> {
 
   Widget _buildDesktop(BuildContext context, double width) {
     final height = MediaQuery.sizeOf(context).height;
-    final isCompact = width < 1000;
+    final isTablet = width < Breakpoints.tablet;
+    final isCompact = isTablet;
     final isShort = height < 760;
 
     final heroHeight = (height - 80).clamp(
@@ -39,7 +42,7 @@ class HeroSection extends GetView<PortfolioController> {
       860.0,
     ).toDouble();
 
-    final horizontalPadding = isCompact ? 28.0 : 48.0;
+    final horizontalPadding = isTablet ? 32.0 : 48.0;
 
     final portraitWidth = isCompact
         ? (width * 0.68).clamp(460.0, 620.0).toDouble()

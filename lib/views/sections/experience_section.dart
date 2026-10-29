@@ -15,35 +15,78 @@ class ExperienceSection extends GetView<PortfolioController> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final isMobile = constraints.maxWidth < Breakpoints.mobile;
+        final width = constraints.maxWidth;
 
-        return Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Theme.of(context)
-                    .dividerColor
-                    .withValues(alpha: 0.35),
-              ),
-            ),
-          ),
-          padding: EdgeInsets.symmetric(
-            horizontal: isMobile ? AppSpacing.md : AppSpacing.lg,
-            vertical: isMobile ? 72 : 110,
-          ),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: AppSpacing.maxContentWidth,
-              ),
-              child: isMobile
-                  ? _buildMobileLayout(context)
-                  : _buildDesktopLayout(context, constraints.maxWidth),
-            ),
-          ),
-        );
+        if (width < Breakpoints.mobile) {
+          return _buildMobile(context);
+        }
+
+        return _buildDesktop(context, width);
       },
+    );
+  }
+
+  // ============================================================
+  // DESKTOP / TABLET
+  // ============================================================
+
+  Widget _buildDesktop(
+    BuildContext context,
+    double width,
+  ) {
+    final isTablet = width < Breakpoints.tablet;
+    final horizontalPadding = isTablet ? 32.0 : 48.0;
+
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        border: Border(
+          bottom: BorderSide(
+            color: Theme.of(context)
+                .dividerColor
+                .withValues(alpha: 0.35),
+          ),
+        ),
+      ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: AppSpacing.maxContentWidth,
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: isTablet ? 78 : 110,
+            ),
+            child: _buildDesktopLayout(context, width),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ============================================================
+  // MOBILE
+  // ============================================================
+
+  Widget _buildMobile(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Theme.of(context)
+                .dividerColor
+                .withValues(alpha: 0.35),
+          ),
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: 72,
+      ),
+      child: _buildMobileLayout(context),
     );
   }
 
