@@ -116,7 +116,7 @@ class ProjectsSection extends GetView<PortfolioController> {
             width: isTablet ? 560 : 650,
             child: Text(
               'A selection of products I have built, '
-              'shipped, and explored—covering real-world '
+              'shipped, and explored, covering real-world '
               'applications, academic work, and personal projects.',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontSize: isTablet ? 17 : 18,

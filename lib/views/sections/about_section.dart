@@ -572,7 +572,7 @@ class AboutSection extends GetView<PortfolioController> {
         title: 'USER FIRST',
         description:
             'Interfaces should feel natural, clear and '
-            'easy to navigate—not just technically correct.',
+            'easy to navigate, not just technically correct.',
       ),
       (
         number: '02',

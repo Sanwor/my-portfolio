@@ -36,7 +36,7 @@ class PortfolioData {
   'responsive UI to build applications for real-world environments. ' 
   'I enjoy turning ideas into practical digital products and solving ' 
   'the details that make an application feel fast, stable and ' 
-  'intentional—from API-driven screens and state management to ' 
+  'intentional from API-driven screens and state management to ' 
   'performance, responsive behavior and polished user experiences.';
 
   // Experience
